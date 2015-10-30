@@ -1,0 +1,33 @@
+<h1>Listing answers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Answerer</th>
+      <th>Comments</th>
+      <th>Picture url</th>
+      <th>Answer option</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answers.each do |answer| %>
+      <tr>
+        <td><%= answer.answerer_id %></td>
+        <td><%= answer.comments %></td>
+        <td><%= answer.picture_url %></td>
+        <td><%= answer.answer_option_id %></td>
+        <td><%= link_to 'Show', answer %></td>
+        <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
+        <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answer', new_answer_path %>

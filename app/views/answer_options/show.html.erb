@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @answer_option.question_id %>
+</p>
+
+<p>
+  <strong>Option:</strong>
+  <%= @answer_option.option %>
+</p>
+
+<%= link_to 'Edit', edit_answer_option_path(@answer_option) %> |
+<%= link_to 'Back', answer_options_path %>
