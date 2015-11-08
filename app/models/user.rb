@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  has_many :questions
+  has_many :friendships
+  has_many :answers
 end
