@@ -4,8 +4,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  has_secure_password
+  #has_secure_password
   has_many :questions
   has_many :friendships
   has_many :answers
+  
+  validates :password, presence: :true
+  validates :name, presence: :true
 end
