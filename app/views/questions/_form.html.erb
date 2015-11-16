@@ -1,4 +1,4 @@
-<%= form_for(@question) do |f| %>
+<%= simple_nested_form_for(@question) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -11,15 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :creator_id %><br>
-    <%= f.number_field :creator_id %>
-  </div>
-  <div class="field">
-    <%= f.label :question_text %><br>
-    <%= f.text_field :question_text %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<div class="row">
+	<div>
+		<fieldset>
+			<legend><%= controller.action_name.capitalize %> Question</legend>
+			<%= render :partial => "question_fields", :locals => { :f => question_form }%>
+		</fieldset>
+	</div>
+  <div>
+	  <legend>Options for This Question<legend>
+		  <div id="options">
+			 <%= f.fields_for :answer_options do |answer_option| %>
+			 <%= render "answer_option_fields", f: answer_option %>
+			 <%end%>
+          </div> 
+		  <%= link_to_add_association 'add option', f, :answer_options%>
+        </div>
+      </div>
+			  
+  <div class="form-actions">
+    <%= question_form.submit %>
   </div>
 <% end %>
