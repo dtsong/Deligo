@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /questions

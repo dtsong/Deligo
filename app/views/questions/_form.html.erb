@@ -19,12 +19,14 @@
 		</fieldset>
 	</div>
   <div>
-	  <legend>Options for This Question<legend>
+	  <br>
+	  <legend>Answer Options<legend>
 		  <div id="options">
 			 <%= f.fields_for :answer_options do |answer_option| %>
 			 <%= render "answer_option_fields", f: answer_option %>
 			 <%end%>
           </div> 
+		  <br></br>
 		  <%= link_to_add_association 'add option', f, :answer_options%>
         </div>
       </div>

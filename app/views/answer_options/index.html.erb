@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-		<th>ID</th>
       <th>Question</th>
       <th>Option</th>
       <th></th>
@@ -15,7 +14,6 @@
   <tbody>
     <% @answer_options.each do |answer_option| %>
       <tr>
-		  <td><%= answer_option.id %></td>
         <td><%= answer_option.question_id %></td>
         <td><%= answer_option.option %></td>
         <td><%= link_to 'Show', answer_option %></td>

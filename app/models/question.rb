@@ -5,8 +5,9 @@ class Question < ActiveRecord::Base
   has_many :answers, through: :answer_options
   
   accepts_nested_attributes_for :answer_options, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :pictures
+  accepts_nested_attributes_for :pictures, reject_if: :all_blank, allow_destroy: true
   
   validates :creator_id, presence: :true
   validates :question_text, presence: :true
+
 end

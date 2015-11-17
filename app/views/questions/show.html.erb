@@ -10,5 +10,12 @@
   <%= @question.question_text %>
 </p>
 
+<p>
+  <strong>Answer Options:</strong>
+  <% @question.answer_options.each do |option| %>
+  <p><%= option.option %></p>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
