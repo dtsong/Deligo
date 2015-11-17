@@ -1,4 +1,4 @@
-<%= simple_nested_form_for(@question) do |f| %>
+<%= form_for(@question) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -15,7 +15,7 @@
 	<div>
 		<fieldset>
 			<legend><%= controller.action_name.capitalize %> Question</legend>
-			<%= render :partial => "question_fields", :locals => { :f => question_form }%>
+			<%= render :partial => "question_fields", :locals => { :f => f }%>
 		</fieldset>
 	</div>
   <div>
@@ -30,6 +30,6 @@
       </div>
 			  
   <div class="form-actions">
-    <%= question_form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

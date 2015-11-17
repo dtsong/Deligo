@@ -4,6 +4,5 @@ class AnswerOption < ActiveRecord::Base
   
   validates :question_id, presence: :true
   validates :option, presence: :true
-  
-  attr_accesssible :option
+
 end

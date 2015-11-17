@@ -1,4 +1,6 @@
 <div class="fields">
-<%= f.input :creator_id %>
-<%= f.input :question %>
+    <%= f.label :option %><br>
+    <%= f.text_field :option %>
 </div>
+
+<%= link_to_remove_association 'remove option', f %>
