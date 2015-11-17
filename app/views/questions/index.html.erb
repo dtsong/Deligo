@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+		<th>ID</th>
       <th>Creator</th>
       <th>Question text</th>
       <th></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
+		  <td><%= question.id %></td>
         <td><%= question.creator_id %></td>
         <td><%= question.question_text %></td>
         <td><%= link_to 'Show', question %></td>

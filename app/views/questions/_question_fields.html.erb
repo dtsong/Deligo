@@ -1,6 +1,6 @@
 <div class="field">
 <%= f.label :creator_id %><br>
-<%= f.number_field :creator_id %>
+<%= f.collection_select :creator_id, @users, :id, :name %>
 </div>
 <div class="field">
 <%= f.label :question_text %><br>

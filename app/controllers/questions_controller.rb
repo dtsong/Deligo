@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    @users = User.all
   end
 
   # GET /questions/1/edit
