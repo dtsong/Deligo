@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong> <%= @question.question_text %> </strong>
+</p>
+
+
+<%= form_for(@answer) do |f| %>
+
+
+<p>
+  <% @question.answer_options.each do |option| %>
+    <%= f.radio_button :answer_option_id, option.id %> 
+    <p><%= f.label option.option %></p>
+  <% end %>
+</p>
+
+
+  <div class="form-actions">
+    <%= f.submit "Confirm Answer" %>
+  </div>
+
+
+
+<% end %>
+
+
+
+<%= link_to 'Previous Question', answering_question_path(@question.previous) if @question.previous %>
+<%= link_to 'Next Question', answering_question_path(@question.next) if @question.next %>

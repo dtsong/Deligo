@@ -26,10 +26,18 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
 
+    related_answer_option = AnswerOption.where("id = ?", answer_params[:answer_option_id]).first
+    question_id = related_answer_option.question
+    question = Question.where("id = ?", question_id).first
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @answer }
+        if question.next
+          format.html { redirect_to answering_question_path(question.next), notice: 'Answer was successfully created.' }
+        else
+          format.html{ redirect_to root_path}
+          # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+          # format.json { render action: 'show', status: :created, location: @answer }
+        end
       else
         format.html { render action: 'new' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }

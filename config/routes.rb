@@ -1,6 +1,9 @@
 Deligo::Application.routes.draw do
-  root "static_pages#home"
-  get "static_pages/help"
+  # root "static_pages#home"
+  # get "static_pages/help"
+
+  root to: "home#index"
+
   resources :friendships
 
   resources :answers
@@ -9,7 +12,11 @@ Deligo::Application.routes.draw do
 
   resources :pictures
 
-  resources :questions
+  resources :questions do
+    member do
+      get "answering"
+    end
+  end
 
   resources :users
 

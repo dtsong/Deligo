@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :answering]
 
   # GET /questions
   # GET /questions.json
@@ -63,9 +63,16 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def answering
+    @answer = Answer.new
+    @questions = Question.all
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
+      print params
       @question = Question.find(params[:id])
     end
 
