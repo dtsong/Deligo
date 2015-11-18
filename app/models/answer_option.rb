@@ -1,11 +1,13 @@
 class AnswerOption < ActiveRecord::Base
+  # Relationships
   belongs_to :question
   has_many :answers
   
   before_validation :set_question
-  
-  validates :question_id, presence: :true
-  validates :option, presence: :true
+
+  # Validations
+  validates_presence_of :option, :question_id
+  validates_numericality_of :question_id, only_integer: true 
   
   private
   
