@@ -1,0 +1,8 @@
+<div class="field">
+<%= f.label :creator_id %><br>
+<%= f.collection_select :creator_id, @users, :id, :name %>
+</div>
+<div class="field">
+<%= f.label :question_text %><br>
+<%= f.text_field :question_text %>
+</div>

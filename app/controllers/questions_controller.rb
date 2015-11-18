@@ -15,10 +15,12 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    @users = User.all
   end
 
   # GET /questions/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /questions
@@ -69,6 +71,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:creator_id, :question_text)
+      params.require(:question).permit(:creator_id, :question_text, answer_options_attributes: [:id, :option, :question_id, :_destroy])
     end
 end

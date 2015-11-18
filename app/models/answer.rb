@@ -2,7 +2,7 @@ class Answer < ActiveRecord::Base
   # Relationships
   belongs_to :user
   belongs_to :question
-
+  
   # Validations
   validates_presence_of :answerer_id, :answer_option_id, 
   validates_length_of :comments, :maximum => 140, :too_long => "Please be more concise."
