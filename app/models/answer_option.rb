@@ -12,8 +12,10 @@ class AnswerOption < ActiveRecord::Base
   private
   
   def set_question
-    last_question = Question.order("created_at").last
-    self.question_id = last_question.id
+    if self.question_id == nil
+      last_question = Question.order("created_at").last
+      self.question_id = last_question.id
+    end
   end
 
 end
