@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030161126) do
+ActiveRecord::Schema.define(version: 20151123214348) do
 
   create_table "answer_options", force: true do |t|
     t.integer  "question_id"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20151030161126) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_digest"
+    t.string   "password_digest"
   end
 
 end
