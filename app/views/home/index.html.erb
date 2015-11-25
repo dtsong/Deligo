@@ -7,4 +7,5 @@
 
   <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
   <br>
+  <%= link_to 'Start Answering Questions', answering_question_path(@questions.first),class: "btn btn-lg btn-primary"  if @questions %>
 </div>
