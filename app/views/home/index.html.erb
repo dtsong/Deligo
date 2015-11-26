@@ -1,11 +1,11 @@
 <div class="center jumbotron">
   <%= image_tag("newdeligologo.png")%>
 
-  <h2>
-    Welcome to the home page of Deligo
-  </h2>
-
+<% if !logged_in? %>
   <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
-  <br>
+<% else %>
   <%= link_to 'Start Answering Questions', answering_question_path(@questions.first),class: "btn btn-lg btn-primary"  if @questions %>
+  <br></br>
+  <%= link_to 'Ask a Question', new_question_path(),class: "btn btn-lg btn-primary" %>
+<% end %>
 </div>
