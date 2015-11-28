@@ -5,6 +5,10 @@
     Welcome to the home page of Deligo
   </h2>
 
-  <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
+  <% if logged_in?%>
+  <!-- need to populate questions -->
+  <% else %>
+    <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
   <br>
 </div>
