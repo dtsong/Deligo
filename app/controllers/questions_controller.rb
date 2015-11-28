@@ -65,7 +65,7 @@ class QuestionsController < ApplicationController
 
   def answering
     @answer = Answer.new
-    @questions = Question.all
+    @questions = Question.open.all
   end
 
 
@@ -78,6 +78,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:creator_id, :question_text, answer_options_attributes: [:id, :option, :question_id, :_destroy])
+      params.require(:question).permit(:creator_id, :question_text, :allow_comments, :open, answer_options_attributes: [:id, :option, :question_id, :_destroy])
     end
 end
