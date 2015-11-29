@@ -14,6 +14,10 @@
     <p><%= f.label option.option %></p>
   <% end %>
 </p>
+<% if @question.allow_comments == true %>
+<%= f.label :comments %>
+<%= f.text_field :comments %>
+<% end %>
 
 
   <div class="form-actions">

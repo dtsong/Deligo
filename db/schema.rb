@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123214348) do
+ActiveRecord::Schema.define(version: 20151127033133) do
 
   create_table "answer_options", force: true do |t|
     t.integer  "question_id"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20151123214348) do
     t.string   "question_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "open"
+    t.boolean  "allow_comments"
   end
 
   create_table "users", force: true do |t|

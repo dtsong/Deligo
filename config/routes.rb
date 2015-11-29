@@ -1,7 +1,7 @@
 Deligo::Application.routes.draw do
   get "sessions/new"
   # root "static_pages#home"
-  # get "static_pages/help"
+  get "static_pages/help", as: :help
 
   root to: "home#index"
 
