@@ -52,9 +52,11 @@ class User < ActiveRecord::Base
    update_attribute(:remember_digest, nil)
   end
 
-  # private
+  #private
   # def self.authenticate(username, password)
   # 	find_by_username(username).try(:authenticate, password)
   # end
+  
+  
 
 end
