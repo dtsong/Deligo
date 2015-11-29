@@ -8,6 +8,13 @@
       </h1>
     </section>
   </aside>
+
+  <aside class="col-md-4">
+    <!-- my quesions -->
+    <!-- create new questions -->
+    <%= link_to "Post a Question", new_question_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "My Questions", questions_path, class: "btn btn-lg btn-primary" %>
+  </aside>
 </div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
