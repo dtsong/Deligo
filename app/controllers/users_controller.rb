@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @friendships = Friendship.where(:user_id1 => current_user.id)
+    @friendship_user2_ids = @friendships.map{ |f| f.user_id2}
   end
 
   # GET /users/1
