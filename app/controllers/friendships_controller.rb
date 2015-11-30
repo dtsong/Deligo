@@ -15,6 +15,14 @@ class FriendshipsController < ApplicationController
   # GET /friendships/new
   def new
     @friendship = Friendship.new
+
+    @friendship.user_id1 = params[:current_id]
+    @friendship.user_id2 = params[:target_id]
+    @friendship.save!
+    @user = User.find_by_id(params[:target_id])
+
+    redirect_to user_path(@user.id)
+
   end
 
   # GET /friendships/1/edit
