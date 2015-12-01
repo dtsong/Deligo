@@ -1,11 +1,14 @@
 <div class="center jumbotron">
   <%= image_tag("newdeligologo.png")%>
 
-<% if !logged_in? %>
-  <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
-<% else %>
-  <%= link_to 'Start Answering Questions', answering_question_path(@questions.first),class: "btn btn-lg btn-primary"  if @questions %>
-  <br></br>
+  <% if !logged_in? %>
+    <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
+  <%if @questions and @questions.length > 0%>
+    <%= link_to 'Start Answering Questions', answering_question_path(@questions.first),class: "btn btn-lg btn-primary" %>
+    <br></br>
+  <% end %>
   <%= link_to 'Ask a Question', new_question_path(),class: "btn btn-lg btn-primary" %>
+  <%= link_to 'My Questions', questions_path({:current_id => current_user.id}) ,class: "btn btn-lg btn-primary" %>
 <% end %>
 </div>

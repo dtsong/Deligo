@@ -3,9 +3,8 @@
 <table>
   <thead>
     <tr>
+      <th>Profile</th>
       <th>Name</th>
-      <th>Password</th>
-      <th>Email</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,18 +13,19 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.password %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if user.id != current_user.id %>
+        <tr>
+          <td><%= gravatar_for user %></td>
+          <td><%= link_to user.name,  user_path(user) %></td>
+          <% if  @friendship_user2_ids.include?(user.id) %>
+            <td> <%= link_to "View his questions", questions_path({:target_id => user.id, :current_id => current_user.id}), class: "btn btn-sm btn-primary" %> </td>
+          <% else %>
+            <td><%= link_to "Add Friend", new_friendship_path({:target_id => user.id, :current_id => current_user.id}), class: "btn btn-sm btn-primary" %> </td>
+          <% end %>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>

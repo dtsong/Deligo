@@ -5,6 +5,8 @@ gem 'rails', '4.0.13'
 gem 'bootstrap-sass', '3.2.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'byebug'
+gem 'awesome_print'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -47,3 +49,5 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "highcharts-rails", "~> 3.0.0"

@@ -16,6 +16,7 @@ Deligo::Application.routes.draw do
   resources :questions do
     member do
       get "answering"
+      get "answering_options_data"
     end
   end
 
