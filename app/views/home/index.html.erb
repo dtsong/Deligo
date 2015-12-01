@@ -1,6 +1,7 @@
 <div class="center jumbotron">
   <%= image_tag("newdeligologo.png")%>
 
+<div class="buttons">
   <% if !logged_in? %>
     <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
   <% else %>
@@ -11,4 +12,5 @@
   <%= link_to 'Ask a Question', new_question_path(),class: "btn btn-lg btn-primary" %>
   <%= link_to 'My Questions', questions_path({:current_id => current_user.id}) ,class: "btn btn-lg btn-primary" %>
 <% end %>
+</div>
 </div>

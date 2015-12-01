@@ -30,6 +30,8 @@ GEM
     bcrypt (3.1.10)
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
+    bootswatch-rails (3.3.5)
+      railties (>= 3.1)
     builder (3.1.4)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -119,6 +121,7 @@ DEPENDENCIES
   awesome_print
   bcrypt (~> 3.1.7)
   bootstrap-sass (= 3.2.0.0)
+  bootswatch-rails
   byebug
   cocoon
   coffee-rails (~> 4.0.0)
