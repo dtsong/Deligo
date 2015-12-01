@@ -11,4 +11,10 @@ class Answer < ActiveRecord::Base
   
   # Scopes
 
+
+
+  def self.find_count(answer_option_id)
+  	return Answer.where("answer_option_id = ?" , answer_option_id).count
+  end
+
 end
