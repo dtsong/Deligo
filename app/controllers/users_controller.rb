@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @friendship = Friendship.where(:user_id1 => current_user.id).where(:user_id2 => @user.id)
-
+    @asked = Question.for_creator(@user.id)
+    @answered = Answer.for_answerer(@user.id)
   end
 
   # GET /users/new
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to Deligo!"
       # Handle a successful save.
       log_in @user
       redirect_to @user

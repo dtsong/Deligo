@@ -66,14 +66,13 @@ class QuestionsController < ApplicationController
 
   def answering
     @answer = Answer.new
-    @questions = Question.open.all
+    @questions = Question.open.not_creator(current_user.id)
   end
 
   def answering_options_data
     target_question = Question.where("id = ?", params[:id])
     print target_question
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

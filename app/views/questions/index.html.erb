@@ -1,6 +1,6 @@
 <h1>My questions</h1>
 
-
+<div class="left">
 <% @questions.each do |question| %>
 
         <h3><%= question.question_text %> </h3>  
@@ -13,8 +13,13 @@
           <br>
         <% end %>
         <br>
+		<% if question.open = true %>
+		<%= link_to 'Close Question' %>
+		<% end %>
+		<br></br>
 
 <% end %>
+</div>
 
 
 

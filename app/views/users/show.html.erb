@@ -10,6 +10,7 @@
   </aside>
 
   <aside class="col-md-4">
+	  <br></br>
     <!-- my quesions -->
     <!-- create new questions -->
     <% if current_user.id == @user.id %>
@@ -18,12 +19,21 @@
     <% else %>
       <% if @friendship %>
 
-        <%= link_to "View his questions", questions_path({:target_id => @user.id, :current_id => current_user.id}), class: "btn btn-lg btn-primary" %>
+        <%= link_to "View their questions", questions_path({:target_id => @user.id, :current_id => current_user.id}), class: "btn btn-lg btn-success" %>
       <% else %>
         <%= link_to "Add Friend", new_friendship_path({:target_id => @user.id, :current_id => current_user.id}), class: "btn btn-lg btn-primary" %>
       <% end %>
     <% end %>
+	<br></br>
+	<div class="left">
+	<p>Questions Asked: <%= @asked.length %><p>
+	<p>Questions Answered: <%= @answered.length %><p>
+	</div>
   </aside>
 </div>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="col-md-3">
+<% if current_user.id == @user.id %>
+<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-default" %> |
+<%end%>
+<%= link_to 'Back', users_path, class: "btn btn-default" %>
+</div>

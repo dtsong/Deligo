@@ -61,6 +61,7 @@ $(function () {
         <thead>
   		<tr>
 			<th>Option</th>
+			<th></th>
 			<th>Answers</th>
 		</tr>
   		</thead>
@@ -74,7 +75,17 @@ $(function () {
     <% end %>
   </tbody>
 		</table>
-
+		<div class="left">
+			<br>
+			<p><strong>Comments:</strong></p>
+		<%if @question.allow_comments = true %>
+     <% @question.answer_options.each do |answer_option| %>
+	 <% answer_option.answers.each do |answer| %>
+	 <%= answer.comments %>
+    <% end %>
+	<% end %>
+	<% end %>
+</div>
         <br>
         <h3> Graph </h3>
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
