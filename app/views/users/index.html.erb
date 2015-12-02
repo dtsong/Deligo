@@ -18,7 +18,7 @@
           <td><%= gravatar_for user %></td>
           <td><%= link_to user.name,  user_path(user) %></td>
           <% if  @friendship_user2_ids.include?(user.id) %>
-            <td> <%= link_to "View their questions", questions_path({:target_id => user.id, :current_id => current_user.id}), class: "btn btn-sm btn-primary" %> </td>
+            <td> <%= link_to "View their questions", questions_path({:target_id => user.id, :current_id => current_user.id}), class: "btn btn-sm btn-success" %> </td>
           <% else %>
             <td><%= link_to "Add Friend", new_friendship_path({:target_id => user.id, :current_id => current_user.id}), class: "btn btn-sm btn-primary" %> </td>
           <% end %>
