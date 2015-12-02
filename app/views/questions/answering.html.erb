@@ -24,6 +24,9 @@
 </div>
 </div>
 <% end %>
+  <% @question.pictures.each do |picture| %>
+    <p><%= link_to "Picture", picture.picture_url %></p>
+  <% end %>
 
 
   <div class="form-actions">
