@@ -66,7 +66,7 @@ class QuestionsController < ApplicationController
 
   def answering
     @answer = Answer.new
-    @questions = Question.open.all
+    @questions = Question.open.not_creator(current_user.id)
   end
 
   def answering_options_data

@@ -18,6 +18,7 @@ class Question < ActiveRecord::Base
   scope :for_creator, -> (creator_id) { where("creator_id = ?", creator_id) }
   scope :open, -> { where(open: true) }
   scope :closed, -> { where(open: false) }
+  scope :not_creator, -> (creator_id) { where("creator_id != ?", creator_id) }
 
 
  
