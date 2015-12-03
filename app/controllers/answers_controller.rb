@@ -25,12 +25,17 @@ class AnswersController < ApplicationController
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
-
     related_answer_option = AnswerOption.where("id = ?", answer_params[:answer_option_id]).first
     question_id = related_answer_option.question
     question = Question.where("id = ?", question_id).first
+    creator = User.find_by_id(question.creator_id)
+    creator_number = "+1" + creator.phone_number #need country code
+    message = current_user.name + "just answered your question " +" \"" + question.question_text + "\""
     respond_to do |format|
       if @answer.save
+        if creator_number
+          TextNotification.send_text(creator_number, message)
+        end
         if question.next
           format.html { redirect_to answering_question_path(question.next) }
         else
