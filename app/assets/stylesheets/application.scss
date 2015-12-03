@@ -8,6 +8,11 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
  */
+@import "bootstrap-sprockets";
+@import "bootswatch/cosmo/variables";
+@import "bootstrap";
+body { padding-top: 60px; text-align: center;}
+.checkbox {text-align: left;}
+.left {text-align: left;}
+@import "bootswatch/cosmo/bootswatch";

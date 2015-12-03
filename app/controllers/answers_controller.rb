@@ -32,7 +32,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         if question.next
-          format.html { redirect_to answering_question_path(question.next), notice: 'Answer was successfully created.' }
+          format.html { redirect_to answering_question_path(question.next) }
         else
           format.html{ redirect_to root_path}
           # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
@@ -50,7 +50,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
+        format.html { redirect_to @answer }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

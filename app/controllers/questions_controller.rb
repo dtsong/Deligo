@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.where(["creator_id = ?", current_user.id])
   end
 
   # GET /questions/1
@@ -27,10 +27,11 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    @question.creator_id = current_user.id
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        # format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html {redirect_to root_path}
         format.json { render action: 'show', status: :created, location: @question }
       else
         format.html { render action: 'new' }
@@ -65,9 +66,13 @@ class QuestionsController < ApplicationController
 
   def answering
     @answer = Answer.new
-    @questions = Question.open.all
+    @questions = Question.open.not_creator(current_user.id)
   end
 
+  def answering_options_data
+    target_question = Question.where("id = ?", params[:id])
+    print target_question
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

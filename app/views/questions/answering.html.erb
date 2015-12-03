@@ -1,34 +1,40 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong> <%= @question.question_text %> </strong>
+  <h2> <%= @question.question_text %> </h2>
 </p>
 
 
-<%= form_for(@answer) do |f| %>
+<%= form_for @answer, :html => {:class => "form-horizontal"} do |f| %>
 
 
 <p>
+	<div class="radio">
   <% @question.answer_options.each do |option| %>
     <%= f.radio_button :answer_option_id, option.id %> 
     <p><%= f.label option.option %></p>
   <% end %>
+</div>
 </p>
 <% if @question.allow_comments == true %>
-<%= f.label :comments %>
-<%= f.text_field :comments %>
+<div class="form-group">
+<%= f.label :comments, "Comments:", class: "control-label" %>
+<div>
+<%= f.text_field :comments, class: "form-control" %>
+</div>
+</div>
 <% end %>
 
 
   <div class="form-actions">
-    <%= f.submit "Confirm Answer" %>
+    <%= f.submit "Confirm Answer", class: "btn btn-default btn-primary" %>
   </div>
 
 
 
 <% end %>
 
-
-
-<%= link_to 'Previous Question', answering_question_path(@question.previous) if @question.previous %>
-<%= link_to 'Next Question', answering_question_path(@question.next) if @question.next %>
+<br></br>
+<%= link_to 'Back', root_path, class: "btn btn-default" %>
+<%= link_to 'Previous Question', answering_question_path(@question.previous), class: "btn btn-default" if @question.previous %>
+<%= link_to 'Next Question', answering_question_path(@question.next), class: "btn btn-default" if @question.next %>

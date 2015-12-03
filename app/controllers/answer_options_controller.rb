@@ -28,7 +28,7 @@ class AnswerOptionsController < ApplicationController
 
     respond_to do |format|
       if @answer_option.save
-        format.html { redirect_to @answer_option, notice: 'Answer option was successfully created.' }
+        format.html { redirect_to @answer_option }
         format.json { render action: 'show', status: :created, location: @answer_option }
       else
         format.html { render action: 'new' }

@@ -1,4 +1,4 @@
-<%= form_for(@question) do |f| %>
+<%= form_for @question, :html => {:class => "form-horizontal"} do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -14,13 +14,13 @@
 <div class="row">
 	<div>
 		<fieldset>
-			<legend><%= controller.action_name.capitalize %> Question</legend>
+			<br>
 			<%= render :partial => "question_fields", :locals => { :f => f }%>
 		</fieldset>
 	</div>
   <div>
 	  <br>
-	  <legend>Answer Options<legend>
+	   <legend>Answer Options<legend>
 		  <div id="options">
 			 <%= f.fields_for :answer_options do |answer_option| %>
 			 <%= render "answer_option_fields", f: answer_option %>
@@ -32,6 +32,7 @@
       </div>
 			  
   <div class="form-actions">
-    <%= f.submit %>
+	  <%= link_to 'Back', root_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
   </div>
 <% end %>

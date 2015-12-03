@@ -1,21 +1,91 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Creator:</strong>
-  <%= @question.creator_id %>
-</p>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script type="text/javascript">
+$(function () {
+    // Create the chart
+    $('#container').highcharts({
+    	data: {
+            table: 'datatable'
+        },
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Answers Breakdown for <%= @question.question_text %>'
+        },
+        subtitle: {
+            text: 'Click the columns to view more details</a>.'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Answers'
+            }
 
-<p>
-  <strong>Question text:</strong>
-  <%= @question.question_text %>
-</p>
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: false,
+                }
+            }
+        },
 
-<p>
-  <strong>Answer Options:</strong>
-  <% @question.answer_options.each do |option| %>
-  <p><%= option.option %></p>
-  <% end %>
-</p>
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        }
+    });
+});
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+
+</script>
+
+
+        <h1><%= @question.question_text %> </h1>  
+        <br>
+        <h3> Answers </h3>
+
+        <table id="datatable">
+        <thead>
+  		<tr>
+			<th>Option</th>
+			<th></th>
+			<th>Answers</th>
+		</tr>
+  		</thead>
+
+  		<tbody>
+     <% @question.answer_options.each do |answer_option| %>
+      <tr>
+        <td><%= answer_option.option %></td>
+        <td><%= Answer.find_count(answer_option.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+		</table>
+		<div class="left">
+			<br>
+			<p><strong>Comments:</strong></p>
+		<%if @question.allow_comments = true %>
+     <% @question.answer_options.each do |answer_option| %>
+	 <% answer_option.answers.each do |answer| %>
+	 <%= answer.comments %>
+    <% end %>
+	<% end %>
+	<% end %>
+</div>
+        <br>
+        <h3> Graph </h3>
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

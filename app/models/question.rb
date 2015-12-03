@@ -12,12 +12,13 @@ class Question < ActiveRecord::Base
   before_save :set_open
 
   # Validations 
-  validates_presence_of :question_text, :creator_id, :allow_comments
+  validates_presence_of :question_text, :creator_id
 
   # Scopes
   scope :for_creator, -> (creator_id) { where("creator_id = ?", creator_id) }
   scope :open, -> { where(open: true) }
   scope :closed, -> { where(open: false) }
+  scope :not_creator, -> (creator_id) { where("creator_id != ?", creator_id) }
 
 
  
@@ -29,6 +30,7 @@ class Question < ActiveRecord::Base
   def next
     Question.where(["id > ?", id]).first
   end
+  
   
   private
   def set_asker
