@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127033133) do
+ActiveRecord::Schema.define(version: 20151203021835) do
 
   create_table "answer_options", force: true do |t|
     t.integer  "question_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20151127033133) do
     t.datetime "updated_at"
     t.string   "remember_digest"
     t.string   "password_digest"
+    t.string   "phone_number"
   end
 
 end
