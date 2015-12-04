@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :friendships
   has_many :answers
+  has_many :groups
+  has_many :members
 
   # Validations
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

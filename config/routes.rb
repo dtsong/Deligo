@@ -1,4 +1,8 @@
 Deligo::Application.routes.draw do
+  resources :members
+
+  resources :groups
+
   get "sessions/new"
   # root "static_pages#home"
   get "static_pages/help", as: :help
