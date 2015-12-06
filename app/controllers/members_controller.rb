@@ -15,7 +15,6 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
-    #@member.user_id = params[:target_id]
     @groups = Group.active.where(["creator_id = ?", current_user.id])
   end
 

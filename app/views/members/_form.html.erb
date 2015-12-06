@@ -10,12 +10,10 @@
       </ul>
     </div>
   <% end %>
-  
-  
-  <div class="form-group">
-    <%= f.label :user_id, "User:" %>
-    <%= f.collection_select :user_id, User.all, :id, :name %>
-  </div>
+	  
+     <div>
+       <%= f.hidden_field :user_id, value: params[:target_id] %>
+     </div>
   <div class="form-group">
     <%= f.label :group_id, "Group:" %>
     <%= f.collection_select :group_id, Group.active.where(["creator_id = ?", current_user.id]), :id, :name %>
