@@ -4,7 +4,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @filterrific = initialize_filterrific(
+      User,
+      params[:filterrific]
+    ) or return
+    
+    # @users = User.all
+    @users = @filterrific.find.page(params[:page]).paginate(page: params[:page], per_page: 10)
+    # @users = @filterrific
+
     @friendships = Friendship.where(:user_id1 => current_user.id)
     @friendship_user2_ids = @friendships.map{ |f| f.user_id2}
   end

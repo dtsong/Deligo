@@ -53,3 +53,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
 gem "highcharts-rails", "~> 3.0.0"
+
+gem 'filterrific'
+
+gem 'will_paginate', '~> 3.0.6'

@@ -18,3 +18,4 @@
 //= require cocoon
 //= require_tree .
 //= require highcharts
+//= require filterrific/filterrific-jquery
