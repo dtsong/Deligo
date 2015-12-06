@@ -14,8 +14,8 @@
     <!-- my quesions -->
     <!-- create new questions -->
     <% if current_user.id == @user.id %>
-      <%= link_to "Post a Question", new_question_path, class: "btn btn-lg btn-primary" %>
-      <%= link_to "My Questions", questions_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to "Post a Question", new_question_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "My Questions", questions_path, class: "btn btn-lg btn-primary" %><br></br>
     <% else %>
       <% if @friendship %>
 
@@ -28,6 +28,9 @@
 	<div class="left">
 	<p>Questions Asked: <%= @asked.length %><p>
 	<p>Questions Answered: <%= @answered.length %><p>
+		<% if current_user.id == @user.id %>
+		 <%= link_to "My Groups", groups_path, class: "btn btn-lg btn-primary" %>
+		 <% end %>
 	</div>
   </aside>
 </div>

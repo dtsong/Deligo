@@ -1,10 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @group.creator_id %>
-</p>
-
+<div class="left">
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
@@ -15,10 +11,25 @@
   <%= @group.description %>
 </p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @group.active %>
-</p>
+<strong>Members:</strong>
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <% @group.members.each do |member| %>
+	<tr>
+	<td><%= link_to member.user.name,  user_path(member.user) %></td>
+</tr>
+	<%end%>
+</tbody>
+</table>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<br></br>
+
+
+
+
+<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-primary" %> |
+<%= link_to 'Back', groups_path, class: "btn btn-sm btn-default" %>
+
+</div>

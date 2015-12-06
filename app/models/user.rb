@@ -21,13 +21,12 @@ class User < ActiveRecord::Base
   validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
 
   # Scopes
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
   scope :alphabetical, -> { where(:name) }
 
   def proper_name
     name
   end
+  
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

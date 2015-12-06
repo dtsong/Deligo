@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @users = User.all
     @friendships = Friendship.where(:user_id1 => current_user.id)
     @friendship_user2_ids = @friendships.map{ |f| f.user_id2}
+    @groups = Group.where(["creator_id = ?", current_user.id])
   end
 
   # GET /users/1

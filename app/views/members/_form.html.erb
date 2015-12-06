@@ -1,4 +1,4 @@
-<%= form_for(@member) do |f| %>
+<%= form_for @member, :html => {:class => "form-horizontal"} do |f| %>
   <% if @member.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
@@ -10,16 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+  
+  
+  <div class="form-group">
+    <%= f.label :user_id, "User:" %>
+    <%= f.collection_select :user_id, User.all, :id, :name %>
   </div>
-  <div class="field">
-    <%= f.label :group_id %><br>
-    <%= f.number_field :group_id %>
+  <div class="form-group">
+    <%= f.label :group_id, "Group:" %>
+    <%= f.collection_select :group_id, Group.active.where(["creator_id = ?", current_user.id]), :id, :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+	  <%= link_to 'Back', users_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-default btn-primary"%>
   </div>
 <% end %>

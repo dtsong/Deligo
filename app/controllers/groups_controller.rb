@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.where(["creator_id = ?", current_user.id])
   end
 
   # GET /groups/1
@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
     @group.active = true
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group }
+        format.html { redirect_to groups_path }
         format.json { render action: 'show', status: :created, location: @group }
       else
         format.html { render action: 'new' }

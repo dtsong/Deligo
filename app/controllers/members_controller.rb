@@ -15,6 +15,8 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
+    #@member.user_id = params[:target_id]
+    @groups = Group.active.where(["creator_id = ?", current_user.id])
   end
 
   # GET /members/1/edit
@@ -28,7 +30,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
+        format.html { redirect_to users_path }
         format.json { render action: 'show', status: :created, location: @member }
       else
         format.html { render action: 'new' }
@@ -69,6 +71,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:user_id, :group_id)
+      params.require(:member).permit(:user_id, :group_id, :target_id)
     end
 end
