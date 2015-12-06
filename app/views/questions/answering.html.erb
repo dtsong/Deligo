@@ -39,5 +39,5 @@
 
 <br></br>
 <%= link_to 'Back', root_path, class: "btn btn-default" %>
-<%= link_to 'Previous Question', answering_question_path(@question.previous), class: "btn btn-default" if @question.previous %>
-<%= link_to 'Next Question', answering_question_path(@question.next), class: "btn btn-default" if @question.next %>
+<%= link_to 'Previous Question', answering_question_path(@question.previous(current_user.id)), class: "btn btn-default" if @question.previous(current_user.id) %>
+<%= link_to 'Next Question', answering_question_path(@question.next(current_user.id)), class: "btn btn-default" if @question.next(current_user.id) %>

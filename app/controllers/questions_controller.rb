@@ -67,6 +67,17 @@ class QuestionsController < ApplicationController
   def answering
     @answer = Answer.new
     @questions = Question.open.not_creator(current_user.id)
+
+    #check if question has already been answered, if so, redirect to homepage
+    all_answered_question_id = Question.get_answered_question_id(current_user.id)
+    
+    respond_to do |format|
+        if all_answered_question_id.include?(params[:id].to_i)
+          format.html{redirect_to root_path}
+        else
+          format.html {render action: "answering"}
+        end
+    end
   end
 
   def answering_options_data
