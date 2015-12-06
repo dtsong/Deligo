@@ -18,7 +18,7 @@
 			<%= render :partial => "question_fields", :locals => { :f => f }%>
 		</fieldset>
 	</div>
-  <div>
+  <div class="left">
 	  <br>
 	   <legend>Answer Options<legend>
 		  <div id="options">
@@ -29,6 +29,17 @@
 		  <br></br>
 		  <%= link_to_add_association 'add option', f, :answer_options%>
         </div>
+	    <div class="left">
+	  	  <br>
+	  	   <legend>Pictures<legend>
+	  		  <div id="options">
+	  			 <%= f.fields_for :pictures do |picture| %>
+	  			 <%= render "picture_fields", f: picture %>
+	  			 <%end%>
+	            </div> 
+	  		  <br></br>
+	  		  <%= link_to_add_association 'add picture', f, :pictures%>
+	          </div>
       </div>
 			  
   <div class="form-actions">
