@@ -31,8 +31,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome to Deligo!"
       # Handle a successful save.
@@ -77,6 +75,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :phone_number)
     end
 end
