@@ -4,7 +4,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @filterrific = initialize_filterrific(
+      User,
+      params[:filterrific]
+    ) or return
+    
+    # @users = User.all
+    @users = @filterrific.find.page(params[:page]).paginate(page: params[:page], per_page: 10)
+    # @users = @filterrific
+
     @friendships = Friendship.where(:user_id1 => current_user.id)
     @friendship_user2_ids = @friendships.map{ |f| f.user_id2}
   end
@@ -30,8 +38,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome to Deligo!"
@@ -77,6 +83,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :phone_number)
     end
 end
