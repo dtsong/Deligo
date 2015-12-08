@@ -1,9 +1,9 @@
 
-  <% for friendship in @friendships.friends_of_user(current_user.id) %> 
-    <% if @questions.for_creator(friendship.user_id2) and @questions.for_creator(friendship.user_id2).length > 0 %>
+  <% for friend in current_user.friends %> 
+    <% if @questions.for_creator(friend.id) and @questions.for_creator(friend.id).length > 0 %>
 
     <h3> Here are some questions that your friends asked recently! </h3>
-       <% for question in @questions.for_creator(friendship.user_id2) %>
+       <% for question in @questions.for_creator(friend.id) %>
           <% question.question_text %> 
           <%= link_to 'Answer this question', answering_question_path(question), class: "btn btn-lg btn-primary" %>
        <% end %>
