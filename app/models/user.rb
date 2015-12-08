@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
 
   # Scopes
   scope :alphabetical, -> { where(:name) }
+  scope :friends_of_user, -> (user_id1) { joins(:friendships).where("user_id1 = ?", user_id1).map(&:user_id2) }
 
+  #User.find(user_id1).friendships.map(&:user_id2))
+  
+  
   filterrific(
   available_filters: [
     :search_query,
