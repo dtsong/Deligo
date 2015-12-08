@@ -21,8 +21,6 @@ class Question < ActiveRecord::Base
   scope :not_creator, -> (creator_id) { where("creator_id != ?", creator_id) }
 
 
- 
-
   def previous
     Question.where(["id < ?", id]).last
   end
