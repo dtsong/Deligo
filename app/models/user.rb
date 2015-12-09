@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   # Find a users' friends
-  def self.friends
+  def User.friends
     friendships = Friendship.all.where(user_id1: self.id, user_id2: self.id).map{ |f| f.user_id2 }
     for friendship in friendships
         friend = User.where(id: friendship.user_id2)
