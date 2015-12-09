@@ -15,7 +15,7 @@
     <!-- create new questions -->
     <% if current_user.id == @user.id %>
 	<%= link_to "Post a Question", new_question_path, class: "btn btn-lg btn-primary" %>
-      <%= link_to "My Questions", questions_path, class: "btn btn-lg btn-primary" %><br></br>
+      <%= link_to "My Questions", questions_path({:target_id => current_user.id, :current_id => current_user.id}), class: "btn btn-lg btn-primary" %><br></br>
     <% else %>
       <% if @friendship %>
 

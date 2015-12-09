@@ -3,11 +3,11 @@
   <% if !logged_in? %>
     <h3> Welcome to Deligo! <h3>
       <div class="center jumbotron">
-        <%= image_tag("newdeligologo.png")%>
+        <%= image_tag("newdeligologo.png", size: '400x250')%>
       </div>
   <% else %>
     <div class="center jumbotron">
-        <%= image_tag("newdeligologo.png")%>
+        <%= image_tag("newdeligologo.png", size: '400x250')%>
       </div>
     <h3> Welcome back, 
       <%= current_user.name %>!
