@@ -20,8 +20,6 @@ class Question < ActiveRecord::Base
   scope :closed, -> { where(open: false) }
   scope :not_creator, -> (creator_id) { where("creator_id != ?", creator_id) }
 
-
-
   def self.get_answered_question_id(user_id)
     # ID of the answer options that were answered by the user
     all_answered_answer_option_ids = Answer.where(["answerer_id = ?", user_id]).select(:answer_option_id).map(&:answer_option_id).uniq
@@ -31,19 +29,19 @@ class Question < ActiveRecord::Base
   end
 
   def self.first_unanswered(user_id)
-    all_answered_question_id = Question.get_answered_question_id(user_id)
+    all_answered_question_id = Question.not_creator(user_id).get_answered_question_id(user_id)
     Question.where(['id NOT IN (?)', all_answered_question_id]).first
   end
 
   def previous(user_id)
-    all_answered_question_id = Question.get_answered_question_id(user_id)
+    all_answered_question_id = Question.not_creator(user_id).get_answered_question_id(user_id)
 
     Question.where(['id NOT IN (?)', all_answered_question_id]).where(['id < ?', id]).last
     # Question.where(["id < ?", id]).last
   end
 
   def next(user_id)
-    all_answered_question_id = Question.get_answered_question_id(user_id)
+    all_answered_question_id = Question.not_creator(user_id).get_answered_question_id(user_id)
 
     Question.where(['id NOT IN (?)', all_answered_question_id]).where(['id > ?', id]).first
 
