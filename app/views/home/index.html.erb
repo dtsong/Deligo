@@ -22,8 +22,8 @@
 
   <%= render :partial => "friends_questions" %>
 
-  <%if @questions.not_creator(current_user.id) and @questions.not_creator(current_user.id).length > 0 %>
-    <%= link_to 'Start Answering Questions', answering_question_path(Question.first_unanswered(current_user.id)), class: "btn btn-lg btn-primary" if Question.first_unanswered(current_user.id) %>
+  <%if @questions.not_creator(current_user.id) and @questions.not_creator(current_user.id).length > 0 and Question.first_unanswered(current_user.id)%>
+    <%= link_to 'Start Answering Questions', answering_question_path(Question.first_unanswered(current_user.id)), class: "btn btn-lg btn-primary" %>
     <br></br>
   <% end %>
   <%= link_to 'Ask a Question', new_question_path(),class: "btn btn-lg btn-default" %>

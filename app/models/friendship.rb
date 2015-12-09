@@ -4,5 +4,5 @@ class Friendship < ActiveRecord::Base
   belongs_to :user2, class_name: "User"
 
   # Scopes
-  scope :friends_of_user, -> (user_id1) { where("user_id1 = ?", user_id1) }
+  scope :friends_of_user, -> (user_id1) { where("user_id1 = ? AND user_id2 = ?", user_id1, user_id1) }
 end

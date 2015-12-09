@@ -33,9 +33,6 @@ class User < ActiveRecord::Base
   ]
   )
 
-
-
-
   scope :search_query, lambda { |query|
     return nil  if query.blank?
     # condition query, parse into individual keywords
@@ -67,6 +64,16 @@ class User < ActiveRecord::Base
   end
   
 
+  # # Find a users' friends
+  # def User.friends
+  #   friendships = Friendship.all.where(user_id1: self.id, user_id2: self.id).map{ |f| f.user_id2 }
+  #   for friendship in friendships
+  #       friend = User.where(id: friendship.user_id2)
+  #       friends += friend
+  #   end
+  #   return friends 
+  # end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
@@ -74,7 +81,6 @@ class User < ActiveRecord::Base
   end
 
   def User.new_token
-
     SecureRandom.urlsafe_base64
   end
 

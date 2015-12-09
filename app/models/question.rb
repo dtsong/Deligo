@@ -20,8 +20,6 @@ class Question < ActiveRecord::Base
   scope :closed, -> { where(open: false) }
   scope :not_creator, -> (creator_id) { where("creator_id != ?", creator_id) }
 
-
-
   def self.get_answered_question_id(user_id)
     # ID of the answer options that were answered by the user
     all_answered_answer_option_ids = Answer.where(["answerer_id = ?", user_id]).select(:answer_option_id).map(&:answer_option_id).uniq
