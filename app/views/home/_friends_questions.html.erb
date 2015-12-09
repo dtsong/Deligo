@@ -1,5 +1,5 @@
 
-  <% for friend in current_user.friends %> 
+  <% for friend in @friendships.friends_of_user(current_user.id)%> 
     <% if @questions.for_creator(friend.id) and @questions.for_creator(friend.id).length > 0 %>
 
     <h3> Here are some questions that your friends asked recently! </h3>
