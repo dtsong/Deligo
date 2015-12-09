@@ -29,19 +29,19 @@ class Question < ActiveRecord::Base
   end
 
   def self.first_unanswered(user_id)
-    all_answered_question_id = Question.get_answered_question_id(user_id)
+    all_answered_question_id = Question.not_creator(user_id).get_answered_question_id(user_id)
     Question.where(['id NOT IN (?)', all_answered_question_id]).first
   end
 
   def previous(user_id)
-    all_answered_question_id = Question.get_answered_question_id(user_id)
+    all_answered_question_id = Question.not_creator(user_id).get_answered_question_id(user_id)
 
     Question.where(['id NOT IN (?)', all_answered_question_id]).where(['id < ?', id]).last
     # Question.where(["id < ?", id]).last
   end
 
   def next(user_id)
-    all_answered_question_id = Question.get_answered_question_id(user_id)
+    all_answered_question_id = Question.not_creator(user_id).get_answered_question_id(user_id)
 
     Question.where(['id NOT IN (?)', all_answered_question_id]).where(['id > ?', id]).first
 

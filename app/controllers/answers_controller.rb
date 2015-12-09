@@ -38,8 +38,8 @@ class AnswersController < ApplicationController
         # if creator_number
         #   TextNotification.send_text(creator_number, message)
         # end
-        if question.next
-          format.html { redirect_to answering_question_path(question.next) }
+        if question.next(current_user.id)
+          format.html { redirect_to answering_question_path(question.next(current_user.id)) }
         else
           format.html{ redirect_to root_path}
           # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
