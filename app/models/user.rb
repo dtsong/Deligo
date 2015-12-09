@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :friendships
   has_many :answers
+  has_many :groups
+  has_many :members
 
   # Validations
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -19,8 +21,6 @@ class User < ActiveRecord::Base
   validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
 
   # Scopes
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
   scope :alphabetical, -> { where(:name) }
 
   filterrific(
@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   def proper_name
     name
   end
+  
 
   # Find a users' friends
   def self.friends
