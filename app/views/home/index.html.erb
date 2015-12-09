@@ -22,7 +22,7 @@
 
   <%= render :partial => "friends_questions" %>
 
-  <%if @questions.not_creator(current_user.id) and @questions.not_creator(current_user.id).length > 0 %>
+  <%if @questions.not_creator(current_user.id) and @questions.not_creator(current_user.id).length > 0 and Question.first_unanswered(current_user.id)%>
     <%= link_to 'Start Answering Questions', answering_question_path(Question.first_unanswered(current_user.id)), class: "btn btn-lg btn-primary" %>
     <br></br>
   <% end %>
