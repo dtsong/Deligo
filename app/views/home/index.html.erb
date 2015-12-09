@@ -27,6 +27,6 @@
     <br></br>
   <% end %>
   <%= link_to 'Ask a Question', new_question_path(),class: "btn btn-lg btn-default" %>
-  <%= link_to 'My Questions', questions_path({:current_id => current_user.id}) ,class: "btn btn-lg btn-default" %>
+  <%= link_to 'My Questions', questions_path({:target_id => current_user.id, :current_id => current_user.id}) ,class: "btn btn-lg btn-default" %>
 <% end %>
 </div>
