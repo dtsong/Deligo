@@ -11,14 +11,16 @@
       </ul>
     </div>
   <% end %>
-
+  
 <div class="row">
+	<div class="well">
 	<div>
 		<fieldset>
 			<br>
 			<%= render :partial => "question_fields", :locals => { :f => f }%>
 		</fieldset>
 	</div>
+</div>
   <div class="left">
 	  <br>
 	   <legend>Answer Options<legend>
@@ -42,6 +44,7 @@
 	  		  <%= link_to_add_association 'add picture', f, :pictures%>
 	          </div>
       </div>
+	  
 			  
   <div class="form-actions">
 	  <%= link_to 'Back', root_path, class: "btn btn-default" %>
