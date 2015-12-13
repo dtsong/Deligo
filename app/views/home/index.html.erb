@@ -5,12 +5,13 @@
         <%= image_tag("newdeligologo.png", size: '400x250')%>
       </div>
   <% else %>
+  <h3> Welcome back, 
+    <%= current_user.name %>!
+  </h3>
+  
     <div class="center jumbotron">
         <%= image_tag("newdeligologo.png", size: '400x250')%>
       </div>
-    <h3> Welcome back, 
-      <%= current_user.name %>!
-    </h3>
   <% end %>
 </div>
 
