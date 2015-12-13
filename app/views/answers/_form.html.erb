@@ -1,8 +1,9 @@
 <%= form_for(@answer) do |f| %>
   <% if @answer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger">
+      <%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:
+</div>
       <ul>
       <% @answer.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

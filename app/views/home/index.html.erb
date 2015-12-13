@@ -18,6 +18,7 @@
 <div class="buttons">
   <% if !logged_in? %>
     <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to "Log in!", login_path, class: "btn btn-lg btn-primary" %>
   <% else %>
 
   <%= render :partial => "friends_questions" %>

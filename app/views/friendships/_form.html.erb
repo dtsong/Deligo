@@ -1,7 +1,9 @@
 <%= form_for(@friendship) do |f| %>
   <% if @friendship.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@friendship.errors.count, "error") %> prohibited this friendship from being saved:</h2>
+		<div class="alert alert-dismissible alert-danger">
+      <%= pluralize(@friendship.errors.count, "error") %> prohibited this friendship from being saved:
+  </div>
 
       <ul>
       <% @friendship.errors.full_messages.each do |msg| %>

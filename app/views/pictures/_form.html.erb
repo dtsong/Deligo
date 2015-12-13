@@ -1,8 +1,9 @@
 <%= form_for(@picture) do |f| %>
   <% if @picture.errors.any? %>
     <div id="error_explanation">
+		<div class="alert alert-dismissible alert-danger">
       <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-
+</div>
       <ul>
       <% @picture.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
