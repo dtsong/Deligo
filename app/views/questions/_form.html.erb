@@ -1,4 +1,4 @@
-<%= form_for @question, :html => {:class => "form-horizontal"} do |f| %>
+<%= form_for @question, :html => {:class => "form-horizontal", multipart: true} do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -25,23 +25,26 @@
 			 <%= f.fields_for :answer_options do |answer_option| %>
 			 <%= render "answer_option_fields", f: answer_option %>
 			 <%end%>
-          </div> 
+          </div>
 		  <br></br>
 		  <%= link_to_add_association 'add option', f, :answer_options%>
         </div>
-	    <div class="left">
+	    <!-- <div class="left">
 	  	  <br>
 	  	   <legend>Pictures<legend>
 	  		  <div id="options">
 	  			 <%= f.fields_for :pictures do |picture| %>
 	  			 <%= render "picture_fields", f: picture %>
 	  			 <%end%>
-	            </div> 
+	            </div>
 	  		  <br></br>
 	  		  <%= link_to_add_association 'add picture', f, :pictures%>
-	          </div>
+	          </div> -->
+            <div class="left">
+              <%= f.file_field :picture %>
+            </div>
       </div>
-			  
+
   <div class="form-actions">
 	  <%= link_to 'Back', root_path, class: "btn btn-default" %>
     <%= f.submit "Submit", class: "btn btn-default btn-primary" %>

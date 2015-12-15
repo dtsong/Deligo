@@ -4,14 +4,15 @@ class Question < ActiveRecord::Base
   has_many :answer_options
   has_many :pictures
   has_many :answers, through: :answer_options
-  
+  mount_uploader :picture, PictureUploader
+
   accepts_nested_attributes_for :answer_options, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :pictures, reject_if: :all_blank, allow_destroy: true
 
   #before_validation :set_asker
   before_save :set_open
 
-  # Validations 
+  # Validations
   validates_presence_of :question_text, :creator_id
 
   # Scopes
@@ -46,8 +47,8 @@ class Question < ActiveRecord::Base
     Question.where(['id NOT IN (?)', all_answered_question_id]).where(['id > ?', id]).first
 
   end
-  
-  
+
+
   private
   def set_asker
     if self.creator_id == nil
@@ -55,7 +56,7 @@ class Question < ActiveRecord::Base
       self.creator_id = id
     end
   end
-  
+
   def set_open
     if self.open == nil
       self.open = true

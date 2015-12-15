@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
 
     #check if question has already been answered, if so, redirect to homepage
     all_answered_question_id = Question.get_answered_question_id(current_user.id)
-    
+
     respond_to do |format|
         if all_answered_question_id.include?(params[:id].to_i)
           format.html{redirect_to root_path}
@@ -94,6 +94,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:creator_id, :question_text, :allow_comments, :open, answer_options_attributes: [:id, :option, :question_id, :_destroy], pictures_attributes: [:id, :picture_url, :question_id, :_destroy])
+      params.require(:question).permit(:picture, :creator_id, :question_text, :allow_comments, :open, answer_options_attributes: [:id, :option, :question_id, :_destroy], pictures_attributes: [:id, :picture_url, :question_id, :_destroy])
     end
 end
