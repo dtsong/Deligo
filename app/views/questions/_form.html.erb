@@ -22,15 +22,16 @@
 	</div>
 </div>
   <div class="left">
+	  <div class="well">
 	  <br>
-	   <legend>Answer Options<legend>
+	   <legend>Answer Options:<legend>
 		  <div id="options">
 			 <%= f.fields_for :answer_options do |answer_option| %>
 			 <%= render "answer_option_fields", f: answer_option %>
 			 <%end%>
           </div>
-		  <br></br>
 		  <%= link_to_add_association 'add option', f, :answer_options%>
+	  </div>
         </div>
 	    <!-- <div class="left">
 	  	  <br>
@@ -44,7 +45,10 @@
 	  		  <%= link_to_add_association 'add picture', f, :pictures%>
 	          </div> -->
             <div class="left">
+				<div class="well">
+					<legend>Picture:</legend>
               <%= f.file_field :picture %>
+		  </div>
             </div>
       </div>
   <div class="form-actions">

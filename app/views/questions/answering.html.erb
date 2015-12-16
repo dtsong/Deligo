@@ -12,6 +12,7 @@
 	<div class="radio">
   <% @question.answer_options.each do |option| %>
     <%= f.radio_button :answer_option_id, option.id %>
+	<br>
     <p><%= f.label option.option %></p>
   <% end %>
 </div>
