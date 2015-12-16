@@ -11,6 +11,8 @@ class Question < ActiveRecord::Base
 
   #before_validation :set_asker
   before_save :set_open
+  before_save :set_friends
+  before_save :set_public
 
   # Validations
   validates_presence_of :question_text, :creator_id
@@ -60,6 +62,18 @@ class Question < ActiveRecord::Base
   def set_open
     if self.open == nil
       self.open = true
+    end
+  end
+  
+  def set_friends
+    if self.ask_friends == nil
+      self.ask_friends = false
+    end
+  end
+  
+  def set_public
+    if self.ask_public == nil
+      self.ask_public = false
     end
   end
 
