@@ -84,6 +84,14 @@ class QuestionsController < ApplicationController
     target_question = Question.where("id = ?", params[:id])
     print target_question
   end
+  
+  #def close
+   # @question = Question.where("id = ?", params[:id])
+    #@question.change_open
+    #@question.save!
+    
+    #redirect_to questions_path
+    #end
 
   private
     # Use callbacks to share common setup or constraints between actions.

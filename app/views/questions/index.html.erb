@@ -22,7 +22,8 @@
         <br>
 		<%if params[:target_id] == params[:current_id]%>
 		<% if question.open = true %>
-		<%= link_to 'Close Question' %>
+		<%= link_to 'Close Question'%>
+		<!--%= link_to 'Close Question', close_question_path({:id => question.id}) %-->
 		<% end %>
 		<%end%>
 		<br></br>

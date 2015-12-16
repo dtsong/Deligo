@@ -50,6 +50,12 @@ class Question < ActiveRecord::Base
 
   end
 
+  #def change_open
+    #if self.open == true
+      #self.open = false
+      #end
+  #end
+
 
   private
   def set_asker
