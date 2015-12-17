@@ -11,7 +11,8 @@
 <p>
 	<div class="radio">
   <% @question.answer_options.each do |option| %>
-    <%= f.radio_button :answer_option_id, option.id %> 
+    <%= f.radio_button :answer_option_id, option.id %>
+	<br>
     <p><%= f.label option.option %></p>
   <% end %>
 </div>
@@ -24,10 +25,14 @@
 </div>
 </div>
 <% end %>
+  <p> <%= image_tag @question.picture.url if @question.picture? %> </p>
   <% @question.pictures.each do |picture| %>
     <p><%= link_to "Picture", picture.picture_url %></p>
   <% end %>
 
+     <div>
+       <%= f.hidden_field :answerer_id, value: current_user.id %>
+     </div>
 
   <div class="form-actions">
     <%= f.submit "Confirm Answer", class: "btn btn-default btn-primary" %>
@@ -39,5 +44,5 @@
 
 <br></br>
 <%= link_to 'Back', root_path, class: "btn btn-default" %>
-<%= link_to 'Previous Question', answering_question_path(@question.previous(current_user.id)), class: "btn btn-default" if @question.previous(current_user.id) %>
-<%= link_to 'Next Question', answering_question_path(@question.next(current_user.id)), class: "btn btn-default" if @question.next(current_user.id) %>
+<%= link_to 'Previous Question', answering_question_path(@question.previous(current_user.id)), class: "btn btn-default" if @question != Question.first and @question.previous(current_user.id) %>
+<%= link_to 'Next Question', answering_question_path(@question.next(current_user.id)), class: "btn btn-default" if @question != Question.last and @question.next(current_user.id) %>

@@ -1,11 +1,18 @@
+<% if params[:target_id] == params[:current_id]%>
 <h1>My questions</h1>
+<%else%>
+<h1>Their questions</h1>
+<%end%>
 
 <div class="left">
-<% @questions.each do |question| %>
+<%	if Question.for_creator(params[:target_id]).open.length > 0 %>
+<% Question.for_creator(params[:target_id]).open.each do |question| %>
 
-        <h3><%= question.question_text %> </h3>  
+        <h3><%= question.question_text %> </h3>
+		<%if params[:target_id] == params[:current_id]%>  
         <td><%= link_to 'Detailed Breakdown', question %></td>
         <br>
+		<%end%>
         <h4> Answers </h4>
         <% question.answer_options.each do |answer_option| %>
           <%= answer_option.option %> : <%= Answer.find_count(answer_option.id) %>
@@ -13,11 +20,16 @@
           <br>
         <% end %>
         <br>
+		<%if params[:target_id] == params[:current_id]%>
 		<% if question.open = true %>
-		<%= link_to 'Close Question' %>
+		<%= link_to 'Close Question'%>
+		<!--%= link_to 'Close Question', close_question_path({:id => question.id}) %-->
 		<% end %>
+		<%end%>
 		<br></br>
-
+		<%end%>
+<%else%>
+<h3>No questions have been asked</h3>
 <% end %>
 </div>
 

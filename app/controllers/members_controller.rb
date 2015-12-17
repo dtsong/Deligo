@@ -29,7 +29,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to users_path }
+        format.html { redirect_to users_path, notice: "User has been added to group." }
         format.json { render action: 'show', status: :created, location: @member }
       else
         format.html { render action: 'new' }

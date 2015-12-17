@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.save
         # format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.html {redirect_to root_path}
+        format.html {redirect_to root_path, notice: 'Question was successfully created.'}
         format.json { render action: 'show', status: :created, location: @question }
       else
         format.html { render action: 'new' }
@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
 
     #check if question has already been answered, if so, redirect to homepage
     all_answered_question_id = Question.get_answered_question_id(current_user.id)
-    
+
     respond_to do |format|
         if all_answered_question_id.include?(params[:id].to_i)
           format.html{redirect_to root_path}
@@ -84,6 +84,14 @@ class QuestionsController < ApplicationController
     target_question = Question.where("id = ?", params[:id])
     print target_question
   end
+  
+  #def close
+   # @question = Question.where("id = ?", params[:id])
+    #@question.change_open
+    #@question.save!
+    
+    #redirect_to questions_path
+    #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -94,6 +102,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:creator_id, :question_text, :allow_comments, :open, answer_options_attributes: [:id, :option, :question_id, :_destroy], pictures_attributes: [:id, :picture_url, :question_id, :_destroy])
+      params.require(:question).permit(:picture, :creator_id, :question_text, :allow_comments, :open, :ask_friends, :ask_public, :ask_group, answer_options_attributes: [:id, :option, :question_id, :_destroy], pictures_attributes: [:id, :picture_url, :question_id, :_destroy])
     end
 end

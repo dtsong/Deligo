@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
 
   # Scopes
   scope :alphabetical, -> { where(:name) }
+  scope :friends_of_user, -> (user_id1) { joins(:friendships).where("user_id1 = ?", user_id1).map(&:user_id2) }
 
+  #User.find(user_id1).friendships.map(&:user_id2))
+  
+  
   filterrific(
   available_filters: [
     :search_query,
@@ -60,15 +64,15 @@ class User < ActiveRecord::Base
   end
   
 
-  # Find a users' friends
-  def self.friends
-    friendships = Friendship.all.where(user_id1: self.id, user_id2: self.id).map{ |f| f.user_id2 }
-    for friendship in friendships
-        friend = User.where(id: friendship.user_id2)
-        friends += friend
-    end
-    return friends 
-  end
+  # # Find a users' friends
+  # def User.friends
+  #   friendships = Friendship.all.where(user_id1: self.id, user_id2: self.id).map{ |f| f.user_id2 }
+  #   for friendship in friendships
+  #       friend = User.where(id: friendship.user_id2)
+  #       friends += friend
+  #   end
+  #   return friends 
+  # end
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

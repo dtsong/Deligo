@@ -1,32 +1,42 @@
 <!-- generic view for a guest -->
 <div class="container">
   <% if !logged_in? %>
-    <h3> Welcome to Deligo! <h3>
       <div class="center jumbotron">
-        <%= image_tag("newdeligologo.png")%>
+        <%= image_tag("newdeligologo.png", size: '400x250')%>
       </div>
   <% else %>
+  <h3> Welcome back, 
+    <%= current_user.name %>!
+  </h3>
+  
     <div class="center jumbotron">
-        <%= image_tag("newdeligologo.png")%>
+        <%= image_tag("newdeligologo.png", size: '400x250')%>
       </div>
-    <h3> Welcome back, 
-      <%= current_user.name %>!
-    </h3>
   <% end %>
 </div>
 
 <div class="buttons">
   <% if !logged_in? %>
     <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to "Log in!", login_path, class: "btn btn-lg btn-primary" %>
   <% else %>
 
   <%= render :partial => "friends_questions" %>
 
   <%if @questions.not_creator(current_user.id) and @questions.not_creator(current_user.id).length > 0 %>
-    <%= link_to 'Start Answering Questions', answering_question_path(Question.first_unanswered(current_user.id)), class: "btn btn-lg btn-primary" %>
+  <% if Answer.all.length != 0%>
+    <%= link_to 'Start Answering Questions', answering_question_path(Question.first_unanswered(current_user.id)), class: "btn btn-lg btn-primary" if Question.first_unanswered(current_user.id)%>
+	<%else%>
+	<%= link_to 'Start Answering Questions', answering_question_path(Question.first), class: "btn btn-lg btn-primary" %>
+	<%end%>
+	<% if Answer.for_answerer(current_user.id).length > 0%>
+	<p></p>
+	<%else%>
+	<%= link_to 'Start Answering Questions', answering_question_path(Question.first), class: "btn btn-lg btn-primary" %>
+	<%end%>
     <br></br>
   <% end %>
   <%= link_to 'Ask a Question', new_question_path(),class: "btn btn-lg btn-default" %>
-  <%= link_to 'My Questions', questions_path({:current_id => current_user.id}) ,class: "btn btn-lg btn-default" %>
+  <%= link_to 'My Questions', questions_path({:target_id => current_user.id, :current_id => current_user.id}) ,class: "btn btn-lg btn-default" %>
 <% end %>
 </div>

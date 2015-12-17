@@ -7,7 +7,19 @@
 <br>
 <div class="form-group">
 <%= f.label :allow_comments, "Allow Comments?", class: "col-md-2 control-label"%><p>
-<div class="checkbox">
-<%= f.check_box :allow_comments %>
+<%= f.check_box :allow_comments, class: "col-md-1" %>
+</div>
+<div class="form-group">
+<%= f.label :ask_friends, "Ask Friends:", class: "col-md-2 control-label"%><p>
+<%= f.check_box :ask_friends, class: "col-md-1" %>
+</div>
+<div class="form-group">
+<%= f.label :ask_public, "Ask Public:", class: "col-md-2 control-label"%><p>
+<%= f.check_box :ask_public, class: "col-md-1" %>
+</div>
+<div class="form-group">
+<%= f.label :ask_group, "Ask Group:", class: "col-md-2 control-label"%>
+<div class="col-md-1">
+<%= f.collection_select :ask_group, Group.active.where(["creator_id = ?", current_user.id]), :id, :name, :include_blank => true %>
 </div>
 </div>

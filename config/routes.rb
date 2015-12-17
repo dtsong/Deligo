@@ -21,6 +21,7 @@ Deligo::Application.routes.draw do
     member do
       get "answering"
       get "answering_options_data"
+      #get "close"
     end
   end
 
