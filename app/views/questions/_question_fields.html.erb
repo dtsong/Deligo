@@ -17,9 +17,11 @@
 <%= f.label :ask_public, "Ask Public:", class: "col-md-2 control-label"%><p>
 <%= f.check_box :ask_public, class: "col-md-1" %>
 </div>
+<% if Group.active.where(["creator_id = ?", current_user.id]).length > 0 %>
 <div class="form-group">
 <%= f.label :ask_group, "Ask Group:", class: "col-md-2 control-label"%>
 <div class="col-md-1">
 <%= f.collection_select :ask_group, Group.active.where(["creator_id = ?", current_user.id]), :id, :name, :include_blank => true %>
 </div>
 </div>
+<%end%>

@@ -63,6 +63,7 @@ $(function () {
   		<tr>
 			<th>Option</th>
 			<th></th>
+			<th></th>
 			<th>Answers</th>
 		</tr>
   		</thead>
@@ -71,6 +72,8 @@ $(function () {
      <% @question.answer_options.each do |answer_option| %>
       <tr>
         <td><%= answer_option.option %></td>
+		<th></th>
+		<th></th>
         <td><%= Answer.find_count(answer_option.id) %></td>
       </tr>
     <% end %>
